@@ -1,0 +1,26 @@
+import React from "react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import Hero from "@/components/landing/Hero";
+import ProjectsSkills from "@/components/landing/ProjectsSkills";
+import Experiences from "@/components/landing/Experiences";
+import Posts from "@/components/landing/Posts";
+
+export default function Home() {
+  return (
+    <>
+      <Hero />
+      <ProjectsSkills />
+      <Experiences />
+      <Posts />
+      <section className="pb-8">
+        <div className="container flex items-center flex-col justify-center">
+          <h1 className="p1-h2">Let’s Connect</h1>
+          <Link href="/contact">
+            <Button size={"lg"}>Contact Me</Button>
+          </Link>
+        </div>
+      </section>
+    </>
+  );
+}

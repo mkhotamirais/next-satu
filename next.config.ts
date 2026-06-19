@@ -1,7 +1,28 @@
-import type { NextConfig } from "next";
+import { NextConfig } from "next";
+import createNextIntlPlugin from "next-intl/plugin";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // allowedDevOrigins: ["lesia-arrestive-bettyann.ngrok-free.dev"],
+  images: {
+    remotePatterns: [
+      // {
+      //   protocol: "https",
+      //   hostname: "lh3.googleusercontent.com",
+      //   // port: "",
+      //   // pathname: "/**",
+      // },
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+      },
+    ],
+  },
+  experimental: {
+    serverActions: {
+      bodySizeLimit: "2mb", // Adjust as needed
+    },
+  },
 };
 
-export default nextConfig;
+const withNextIntl = createNextIntlPlugin();
+export default withNextIntl(nextConfig);
