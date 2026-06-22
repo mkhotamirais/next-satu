@@ -48,7 +48,9 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
   return (
     <section className="py-4">
-      <article className="prose dark:prose-invert" dangerouslySetInnerHTML={{ __html: html }}></article>
+      <div className="">
+        <article className="prose dark:prose-invert" dangerouslySetInnerHTML={{ __html: html }}></article>
+      </div>
     </section>
   );
 }

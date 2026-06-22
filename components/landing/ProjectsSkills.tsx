@@ -120,8 +120,8 @@ export const projects = [
 export default function ProjectsSkills() {
   return (
     <section id="skill-projects" className="py-12">
-      <div className="container">
-        <h2 className="p1-h2">Projects & Skills</h2>
+      <div className="">
+        <h2 className="h2">Projects & Skills</h2>
         <div className="flex flex-wrap items-center gap-2">
           <SiNextdotjs />
           <SiLaravel />

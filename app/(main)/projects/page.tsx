@@ -34,8 +34,8 @@ export const metadata: Metadata = {
 export default function Projects() {
   return (
     <section className="py-4">
-      <div className="container">
-        <h1 className="p1-h1">Projects & Skills</h1>
+      <div className="">
+        <h1 className="h1">Projects & Skills</h1>
         <div className="flex flex-wrap items-center gap-2">
           <SiNextdotjs />
           <SiLaravel />

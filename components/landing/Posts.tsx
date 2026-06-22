@@ -8,8 +8,8 @@ export default async function Posts() {
 
   return (
     <section className="py-12" id="posts">
-      <div className="container">
-        <h2 className="p1-h2">Latest Posts</h2>
+      <div className="">
+        <h2 className="h2">Latest Posts</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           {posts
             .sort((a, b) => new Date(b.meta.date).getTime() - new Date(a.meta.date).getTime())

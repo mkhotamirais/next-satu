@@ -3,9 +3,9 @@ import Image from "next/image";
 export default function About() {
   return (
     <section className="py-4">
-      <div className="container">
-        <h1 className="p1-h1">About Me</h1>
-        <article className="prose dark:prose-invert">
+      <div className="">
+        <h1 className="h1">About Me</h1>
+        <article className="prose dark:prose-invert w-full">
           <Image
             src="/profile-mkhotami-tengah.jpg"
             alt="profile mkhotami"

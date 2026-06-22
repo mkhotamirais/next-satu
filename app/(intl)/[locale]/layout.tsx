@@ -1,7 +1,8 @@
 import { routing } from "@/i18n/routing";
 import Footer from "@/projects/lang/layouts/Footer";
 import Header from "@/projects/lang/layouts/Header";
-import SwitchLangBtn from "@/projects/lang/SwitchLangBtn";
+import SwitchLangBtn from "@/projects/lang/components/SwitchLangBtn";
+import SwitchLangOpt from "@/projects/lang/components/SwitchLangOpt";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -21,11 +22,12 @@ export default async function RootLayout({ children, params }: Props) {
   }
 
   return (
-    <NextIntlClientProvider>
-      <Header />
-      <SwitchLangBtn />
-      <div className="flex-1">{children}</div>
-      <Footer />
-    </NextIntlClientProvider>
+    <div className="min-h-full flex flex-col bg-background w-full">
+      <NextIntlClientProvider>
+        <Header />
+        <div className="flex-1">{children}</div>
+        <Footer />
+      </NextIntlClientProvider>
+    </div>
   );
 }

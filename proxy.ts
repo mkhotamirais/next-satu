@@ -46,6 +46,7 @@ export const config = {
     // intl paths
     "/en/:path*",
     "/id/:path*",
+    "/ar/:path*",
     // protected paths
     // "/dashboard/:path*",
     // tambah path lain yang butuh middleware

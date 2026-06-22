@@ -4,8 +4,8 @@ import React from "react";
 export default function Experiences() {
   return (
     <section className="py-12">
-      <div className="container">
-        <h2 className="p1-h2">Experiences</h2>
+      <div className="">
+        <h2 className="h2">Experiences</h2>
         <div className="space-y-4">
           {exps.map((exp, index) => (
             <div key={index} className="">

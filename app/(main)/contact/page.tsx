@@ -6,8 +6,8 @@ import { FaEnvelope, FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa6";
 export default function Contact() {
   return (
     <section className="section" id="contact">
-      <div className="container">
-        <h1 className="p1-h1">Let’s Work Together</h1>
+      <div className="">
+        <h1 className="h1">Let’s Work Together</h1>
         <p className="text-muted-foreground mb-8">
           I am always open to new opportunities and collaborations. Whether you have a project idea, a job offer, or
           just want to say hi — feel free to reach out.

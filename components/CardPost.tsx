@@ -8,7 +8,7 @@ import { IPost } from "@/lib/main-content/types";
 export default function CardPost({ post }: { post: IPost }) {
   return (
     <Link
-      href={`/portfolio-1/posts/${post.slug}`}
+      href={`/posts/${post.slug}`}
       key={post.slug}
       className="flex flex-col group space-y-2 relative border rounded-md p-2 bg-muted-foreground/5 hover:bg-muted-foreground/10 transition-all"
     >

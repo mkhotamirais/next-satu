@@ -1,7 +1,26 @@
 export const menu = [
-  { label: "Home", url: "/portfolio-1" },
-  { label: "About", url: "/portfolio-1/about" },
-  { label: "Projects", url: "/portfolio-1/projects" },
-  { label: "Posts", url: "/portfolio-1/posts" },
-  { label: "Contact", url: "/portfolio-1/contact" },
+  { label: "Home", url: "/" },
+  { label: "About", url: "/about" },
+  { label: "Projects", url: "/projects" },
+  { label: "Posts", url: "/posts" },
+  { label: "Contact", url: "/contact" },
+];
+
+export const nextMenu = [
+  {
+    label: "FrontEnd",
+    url: "#",
+    menu: [
+      { label: "Components", url: "/components" },
+      { label: "Motion", url: "/motion" },
+    ],
+  },
+  {
+    label: "FullStack",
+    url: "#",
+    menu: [
+      { label: "WarungOta", url: "/warungota" },
+      { label: "Subscription", url: "/subscription" },
+    ],
+  },
 ];
