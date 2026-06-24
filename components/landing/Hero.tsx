@@ -8,7 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
-import { contact } from "@/lib/main-content/contact";
+import { contact } from "@/lib/content/main/contact";
 
 export default function Hero() {
   return (
@@ -63,6 +63,7 @@ export default function Hero() {
             width={200}
             height={200}
             className="order-1 sm:order-2 size-40 rounded-xl object-cover object-center dark:grayscale"
+            loading="eager"
           />
         </div>
       </div>

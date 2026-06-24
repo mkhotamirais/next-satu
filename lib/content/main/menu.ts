@@ -16,6 +16,15 @@ export const nextMenu = [
     ],
   },
   {
+    label: "BAAS",
+    url: "#",
+    menu: [
+      { label: "Appwrite", url: "/appwrite" },
+      { label: "Firebase", url: "/firebase" },
+      { label: "Supabase", url: "/supabase" },
+    ],
+  },
+  {
     label: "FullStack",
     url: "#",
     menu: [

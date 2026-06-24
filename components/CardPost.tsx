@@ -3,7 +3,7 @@ import React from "react";
 import { smartTrim } from "@/lib/utils";
 import { formatDistanceToNow } from "date-fns";
 import { Badge } from "./ui/badge";
-import { IPost } from "@/lib/main-content/types";
+import { IPost } from "@/lib/types/main";
 
 export default function CardPost({ post }: { post: IPost }) {
   return (

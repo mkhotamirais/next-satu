@@ -6,7 +6,7 @@ import Logo from "@/components/Logo";
 import { SheetClose } from "@/components/ui/sheet";
 import { ThemeToggle } from "./ThemeToggle";
 import Sheet2 from "../Sheet2";
-import { menu } from "@/lib/main-content/menu";
+import { menu } from "@/lib/content/main/menu";
 
 export default function NavMobile() {
   return (

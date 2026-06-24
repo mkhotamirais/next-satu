@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { IPostMeta } from "@/lib/main-content/types";
+import { IPostMeta } from "@/lib/types/main";
 
 const postsDir = path.join(process.cwd(), "posts");
 

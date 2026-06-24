@@ -1,4 +1,4 @@
-import { exps } from "@/lib/main-content/data";
+import { exps } from "@/lib/content/main/data";
 import React from "react";
 
 export default function Experiences() {

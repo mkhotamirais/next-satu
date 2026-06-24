@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { menu } from "@/lib/main-content/menu";
+import { menu } from "@/lib/content/main/menu";
 import Link from "next/link";
 
 export default function NavDesktop() {

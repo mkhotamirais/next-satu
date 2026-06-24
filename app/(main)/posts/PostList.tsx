@@ -1,7 +1,7 @@
 "use client";
 import CardPost from "@/components/CardPost";
 import Pagination from "@/components/ui/custom/Pagination";
-import { IPost } from "@/lib/main-content/types";
+import { IPost } from "@/lib/types/main";
 import { useSearchParams } from "next/navigation";
 
 export default function PostList({ posts }: { posts: IPost[] }) {

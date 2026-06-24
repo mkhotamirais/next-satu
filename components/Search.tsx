@@ -15,7 +15,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
-import { IPost } from "@/lib/main-content/types";
+import { IPost } from "@/lib/types/main";
 import { projects } from "./landing/ProjectsSkills";
 
 export default function Search({ posts }: { posts: IPost[] }) {

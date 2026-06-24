@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { contact } from "@/lib/main-content/contact";
+import { contact } from "@/lib/content/main/contact";
 import React from "react";
 import { FaEnvelope, FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa6";
 

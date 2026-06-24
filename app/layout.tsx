@@ -3,6 +3,7 @@ import { Inter, Noto_Sans_Arabic } from "next/font/google";
 import "./globals.css";
 import { getLocale } from "next-intl/server";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { Toaster } from "sonner";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -36,8 +37,9 @@ export default async function RootLayout({ children }: props) {
       suppressHydrationWarning
       data-scroll-behavior="smooth"
     >
-      <body className="min-h-full flex felx-col">
+      <body className="min-h-full flex flex-col w-full">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <Toaster position="top-center" richColors swipeDirections={["left", "right", "top"]} />
           {children}
         </ThemeProvider>
       </body>
