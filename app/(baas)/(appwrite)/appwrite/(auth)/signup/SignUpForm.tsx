@@ -95,7 +95,7 @@ export function SignUpForm() {
           )}
         />
       </FieldGroup>
-      <Button type="submit" className="w-full mt-4 py-4">
+      <Button type="submit" disabled={pending} className="w-full mt-4 py-4">
         {pending && <Spinner />}
         Sign Up
       </Button>

@@ -1,19 +1,17 @@
 import Logo from "@/components/Logo";
-import React from "react";
 import NavDesktop from "./NavDesktop";
-import AuthButtons from "./AuthButtons";
-import { getLoggedInUser } from "@/lib/server/appwrite.query";
+import NextBtn from "@/components/NextBtn";
+// import NavMobile from "./NavMobile";
 
-export default async function Header() {
-  const user = await getLoggedInUser();
-
+export default function Header() {
   return (
     <header className="sticky top-0 h-16 z-30 bg-white">
       <div className="container flex items-center justify-between">
         <Logo />
-        <div className="flex items-center">
+        <div className="flex">
           <NavDesktop />
-          <AuthButtons user={user} />
+          <NextBtn />
+          {/* <NavMobile /> */}
         </div>
       </div>
     </header>

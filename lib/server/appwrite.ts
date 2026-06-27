@@ -8,7 +8,7 @@ export async function createSessionClient() {
   const client = new Client().setEndpoint(APPWRITE_ENDPOINT).setProject(APPWRITE_PROJECT_ID);
 
   const cookieStore = await cookies();
-  const session = cookieStore.get("my-custom-session");
+  const session = cookieStore.get("next-satu-appwrite-session");
   if (!session || !session.value) {
     throw new Error("No session");
   }
@@ -30,14 +30,4 @@ export async function createAdminClient() {
       return new Account(client);
     },
   };
-}
-
-export async function getLoggedInUser() {
-  try {
-    const { account } = await createSessionClient();
-    return await account.get();
-  } catch (error) {
-    console.log(error);
-    return null;
-  }
 }

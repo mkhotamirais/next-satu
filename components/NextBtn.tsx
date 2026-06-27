@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -15,7 +14,7 @@ import { nextMenu } from "@/lib/content/main/menu";
 import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 
-export default function NextBtn({ locale }: { locale: string }) {
+export default function NextBtn() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -27,6 +26,10 @@ export default function NextBtn({ locale }: { locale: string }) {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
+        <DropdownMenuItem asChild>
+          <Link href={`/`}>Home</Link>
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
         {nextMenu.map((item, i) => (
           <DropdownMenuGroup key={i}>
             <DropdownMenuLabel>{item.label}</DropdownMenuLabel>
@@ -39,9 +42,6 @@ export default function NextBtn({ locale }: { locale: string }) {
           </DropdownMenuGroup>
         ))}
         <DropdownMenuSeparator />
-        <DropdownMenuItem asChild>
-          <Link href={`/${locale}/lang`}>Lang</Link>
-        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

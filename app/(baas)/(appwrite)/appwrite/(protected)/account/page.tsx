@@ -1,40 +1,21 @@
-import { createSessionClient, getLoggedInUser } from "@/lib/server/appwrite";
 import { redirect } from "next/navigation";
-import { cookies } from "next/headers";
+// import { UpdateEmailForm } from "./UpdateEmailForm";
+import { UpdatePhonForm } from "./UpdatePhoneForm";
+import { getLoggedInUser } from "@/lib/server/appwrite.query";
+// import { UpdateNameForm } from "./UpdateNameForm";
 
-async function signOut() {
-  "use server";
-
-  const { account } = await createSessionClient();
-
-  const cookieStore = await cookies();
-  cookieStore.delete("my-custom-session");
-  await account.deleteSession({ sessionId: "current" });
-
-  redirect("/signup");
-}
-
-export default async function HomePage() {
+export default async function Account() {
   const user = await getLoggedInUser();
-  if (!user) redirect("/appwrite/signup");
+  if (!user) redirect("/appwrite/signin");
 
   return (
-    <>
-      <ul>
-        <li>
-          <strong>Email:</strong> {user.email}
-        </li>
-        <li>
-          <strong>Name:</strong> {user.name}
-        </li>
-        <li>
-          <strong>ID: </strong> {user.$id}
-        </li>
-      </ul>
-
-      <form action={signOut}>
-        <button type="submit">Sign out</button>
-      </form>
-    </>
+    <section className="max-w-xl">
+      <h1 className="h1">Account</h1>
+      <div className="space-y-4">
+        {/* <UpdateNameForm name={user.name} /> */}
+        {/* <UpdateEmailForm email={user.email} /> */}
+        <UpdatePhonForm phone={user.phone} />
+      </div>
+    </section>
   );
 }

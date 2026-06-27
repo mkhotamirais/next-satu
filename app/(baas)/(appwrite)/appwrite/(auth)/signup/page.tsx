@@ -10,7 +10,9 @@ export default function Signin() {
         <h1 className="text-2xl font-bold">Create an account</h1>
         <p className="text-sm">Sign up to get started with our platform</p>
       </div>
-      <GithubOauth />
+      <div className="mb-4">
+        <GithubOauth />
+      </div>
       <SignUpForm />
       <p className="text-center mt-4 text-sm">
         Already have an account?{" "}

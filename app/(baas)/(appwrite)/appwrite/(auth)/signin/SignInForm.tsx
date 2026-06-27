@@ -10,6 +10,9 @@ import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field
 import { Input } from "@/components/ui/input";
 import { InputPassword } from "@/components/ui/custom/InputPassword";
 import { signInSchema } from "@/lib/schemas/appwrite/auth";
+import { signIn } from "@/actions/appwrite/auth";
+import { useRouter } from "next/navigation";
+import { Spinner } from "@/components/ui/spinner";
 
 type Infer = z.infer<typeof signInSchema>;
 
@@ -19,22 +22,20 @@ export function SignInForm() {
     defaultValues: { email: "", password: "" },
   });
 
-  function onSubmit(data: Infer) {
-    toast("You submitted the following values:", {
-      description: (
-        <pre className="mt-2 w-[320px] overflow-x-auto rounded-md bg-code p-4 text-code-foreground">
-          <code>{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-      position: "bottom-right",
-      classNames: {
-        content: "flex flex-col gap-2",
-      },
-      style: {
-        "--border-radius": "calc(var(--radius)  + 4px)",
-      } as React.CSSProperties,
-    });
-  }
+  const router = useRouter();
+  const pending = form.formState.isSubmitting;
+
+  const onSubmit = async (data: Infer) => {
+    const res = await signIn(data);
+    if (!res.ok) {
+      toast.error(res.message);
+      return; // stop di sini kalau error!
+    }
+
+    toast.success(res.message);
+    form.reset();
+    router.push("/appwrite/account");
+  };
 
   return (
     <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -69,7 +70,8 @@ export function SignInForm() {
           )}
         />
       </FieldGroup>
-      <Button type="submit" className="w-full mt-4 py-4">
+      <Button type="submit" disabled={pending} className="w-full mt-4 py-4">
+        {pending && <Spinner />}
         Sign In
       </Button>
     </form>
