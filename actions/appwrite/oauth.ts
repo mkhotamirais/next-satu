@@ -10,12 +10,12 @@ export async function oauthGithub() {
 
   const originHeader = await headers();
   const origin = originHeader.get("origin");
-  console.log("origin:", origin); // ← tambahkan ini dulu
+
   if (!origin) throw new Error("Origin not found");
 
   const redirectUrl = await account.createOAuth2Token({
     provider: OAuthProvider.Github,
-    success: `${origin}/appwrite/account`,
+    success: `${origin}/appwrite/oauth`,
     failure: `${origin}/appwrite/signin`,
   });
 
