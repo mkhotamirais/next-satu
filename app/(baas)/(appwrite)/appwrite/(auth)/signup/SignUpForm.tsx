@@ -30,7 +30,7 @@ export function SignUpForm() {
 
     toast.success(res.message);
     form.reset();
-    router.push("/appwrite/signin");
+    router.push("/appwrite/account");
   };
   return (
     <form onSubmit={form.handleSubmit(onSubmit)}>

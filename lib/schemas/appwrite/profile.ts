@@ -1,4 +1,3 @@
-// src/lib/schemas/appwrite/profile.ts
 import * as z from "zod";
 
 export const updateNameSchema = z.object({
@@ -19,6 +18,19 @@ export const updatePhoneSchema = z.object({
   password: z.string().min(1, "Password is required"),
 });
 
+export const updateUserSchema = z.object({
+  age: z
+    .string()
+    .optional()
+    .refine(
+      (val) => !val || (Number.isInteger(Number(val)) && Number(val) >= 1 && Number(val) <= 120),
+      "Age must be a whole number between 1 and 120",
+    ),
+
+  address: z.string().max(255, "Address is too long").optional(),
+});
+
 export type InferUpdateNameSchema = z.infer<typeof updateNameSchema>;
 export type InferUpdateEmailSchema = z.infer<typeof updateEmailSchema>;
 export type InferUpdatePhoneSchema = z.infer<typeof updatePhoneSchema>;
+export type InferUpdateUserSchema = z.infer<typeof updateUserSchema>;

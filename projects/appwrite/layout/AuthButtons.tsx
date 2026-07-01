@@ -29,13 +29,19 @@ export default function AuthButtons({ user }: { user: User | null }) {
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuGroup>
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuLabel>Hi {user.name}</DropdownMenuLabel>
               <DropdownMenuItem asChild>
                 <Link href="/appwrite/account" className="w-full">
                   Profile
                 </Link>
               </DropdownMenuItem>
-              <DropdownMenuItem>Billing</DropdownMenuItem>
+              {user.role === "admin" && (
+                <DropdownMenuItem asChild>
+                  <Link href="/appwrite/dashboard" className="w-full">
+                    Dashboard
+                  </Link>
+                </DropdownMenuItem>
+              )}
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>

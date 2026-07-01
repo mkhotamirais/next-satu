@@ -9,5 +9,9 @@ export default async function Home() {
 
   // redirect("/appwrite/account");
 
-  return <div>Home</div>;
+  return (
+    <div className="flex items-center justify-center h-full">
+      <h1 className="h1">Appwrite Home</h1>
+    </div>
+  );
 }

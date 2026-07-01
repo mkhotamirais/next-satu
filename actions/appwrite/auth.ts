@@ -1,9 +1,9 @@
 "use server";
 
+import { APPWRITE_DB_ID_NEXT_DB, APPWRITE_TABLE_USERS } from "@/lib/constants";
 import { InferSignInSchema, InferSignUpSchema, signInSchema, signUpSchema } from "@/lib/schemas/appwrite/auth";
 import { createAdminClient, createSessionClient } from "@/lib/server/appwrite";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 import { ID } from "node-appwrite";
 
 const SESSION_COOKIE = "next-satu-appwrite-session";
@@ -17,13 +17,32 @@ export const signUp = async (data: InferSignUpSchema) => {
   const { name, email, password } = validation.data;
 
   try {
-    const { account } = await createAdminClient();
+    const { account, tablesDB } = await createAdminClient();
 
-    await account.create({ userId: ID.unique(), email, password, name });
+    const newUser = await account.create({ userId: ID.unique(), email, password, name });
+
+    try {
+      await tablesDB.createRow({
+        databaseId: APPWRITE_DB_ID_NEXT_DB,
+        tableId: APPWRITE_TABLE_USERS,
+        rowId: newUser.$id,
+        data: { role: "user", age: 10, address: null },
+      });
+    } catch (dbError) {
+      const { users } = await createAdminClient();
+      await users.delete({ userId: newUser.$id });
+      throw dbError;
+    }
+
     const session = await account.createEmailPasswordSession({ email, password });
 
     const cookieStore = await cookies();
-    cookieStore.set(SESSION_COOKIE, session.secret, { path: "/", httpOnly: true, sameSite: "lax", secure: true });
+    cookieStore.set("next-satu-appwrite-session", session.secret, {
+      path: "/",
+      httpOnly: true,
+      sameSite: "lax",
+      secure: true,
+    });
 
     return { ok: true, message: "Sign up successful" };
   } catch (error) {
@@ -47,7 +66,6 @@ export const signIn = async (data: InferSignInSchema) => {
     const { account } = await createAdminClient();
 
     const session = await account.createEmailPasswordSession({ email, password });
-
     const cookieStore = await cookies();
     cookieStore.set(SESSION_COOKIE, session.secret, { path: "/", httpOnly: true, sameSite: "lax", secure: true });
 

@@ -1,6 +1,6 @@
 import "server-only";
 
-import { Client, Account } from "node-appwrite";
+import { Client, Account, Databases, Users, TablesDB, Storage } from "node-appwrite";
 import { cookies } from "next/headers";
 import { APPWRITE_API_KEY, APPWRITE_ENDPOINT, APPWRITE_PROJECT_ID } from "../constants";
 
@@ -19,6 +19,15 @@ export async function createSessionClient() {
     get account() {
       return new Account(client);
     },
+    get databases() {
+      return new Databases(client);
+    },
+    get tablesDB() {
+      return new TablesDB(client); // ← tambah ini
+    },
+    get storage() {
+      return new Storage(client);
+    },
   };
 }
 
@@ -28,6 +37,18 @@ export async function createAdminClient() {
   return {
     get account() {
       return new Account(client);
+    },
+    get databases() {
+      return new Databases(client); // ← tambah ini
+    },
+    get users() {
+      return new Users(client); // ← tambah ini
+    },
+    get tablesDB() {
+      return new TablesDB(client); // ← tambah ini
+    },
+    get storage() {
+      return new Storage(client);
     },
   };
 }
