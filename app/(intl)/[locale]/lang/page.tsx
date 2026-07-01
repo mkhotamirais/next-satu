@@ -7,7 +7,7 @@ export default function Lang() {
 
   return (
     <section>
-      <div className="container">
+      <div className="">
         <div>{m("HomePage.title")}</div>
         <div>{p("title")}</div>
       </div>

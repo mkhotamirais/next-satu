@@ -42,15 +42,16 @@ export default async function RootLayout({ children, params }: Props) {
       suppressHydrationWarning
       data-scroll-behavior="smooth"
     >
-      <body className="min-h-full flex flex-col w-full">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <NextIntlClientProvider>
+      <body className="min-h-full flex flex-col w-full" suppressHydrationWarning>
+        {/* <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange> */}
+        <NextIntlClientProvider>
+          <ThemeProvider attribute="class" defaultTheme="system">
             <Toaster position="top-center" richColors swipeDirections={["left", "right", "top"]} />
             <Header />
-            <main className="flex-1 container-sm">{children}</main>
+            <main className="flex-1 container">{children}</main>
             <Footer />
-          </NextIntlClientProvider>
-        </ThemeProvider>
+          </ThemeProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

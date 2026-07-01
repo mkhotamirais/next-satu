@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Globe } from "lucide-react";
+import { useTransition } from "react";
 
 const locales = [
   { code: "en", label: "English" },
@@ -21,10 +22,13 @@ export default function SwitchLangOpt() {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
+  const [isPending, startTransition] = useTransition();
 
   const switchLanguage = (nextLocale: string) => {
-    router.replace(pathname, { locale: nextLocale, scroll: false });
-    router.refresh();
+    startTransition(() => {
+      router.replace(pathname, { locale: nextLocale, scroll: false });
+      // router.refresh();
+    });
   };
 
   const currentLocale = locales.find((l) => l.code === locale);
@@ -32,7 +36,7 @@ export default function SwitchLangOpt() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant={"ghost"}>
+        <Button variant={"ghost"} disabled={isPending}>
           <Globe />
           {currentLocale?.label}
         </Button>
