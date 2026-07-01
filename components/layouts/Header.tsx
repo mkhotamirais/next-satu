@@ -5,7 +5,7 @@ import { ThemeToggle } from "./ThemeToggle";
 import { Suspense } from "react";
 import { getAllPosts } from "@/actions/portfolio-1/post";
 import Search from "../Search";
-import NextBtn from "../NextBtn";
+// import NextBtn from "../NextBtn";
 
 export default async function Header() {
   const posts = getAllPosts();

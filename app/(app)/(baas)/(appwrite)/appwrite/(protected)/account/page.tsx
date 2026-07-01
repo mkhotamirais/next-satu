@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 // import { UpdateEmailForm } from "./UpdateEmailForm";
-import { UpdatePhonForm } from "./UpdatePhoneForm";
+// import { UpdatePhonForm } from "./UpdatePhoneForm";
 import { getLoggedInUser } from "@/lib/server/appwrite.query";
 import { UpdateNameForm } from "./UpdateNameForm";
 import { UpdateUserForm } from "./UpdateUserForm";
