@@ -13,7 +13,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <>
       <Header />
       <main className="flex-1 container-sm">{children}</main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

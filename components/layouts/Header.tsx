@@ -16,7 +16,7 @@ export default async function Header() {
         <Logo />
         <div className="flex items-center gap-2">
           <NavDesktop />
-          <NextBtn />
+          {/* <NextBtn /> */}
           <Suspense fallback={null}>
             <Search posts={posts} />
           </Suspense>
