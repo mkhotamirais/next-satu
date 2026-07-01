@@ -1,4 +1,4 @@
-// import Footer from "@/components/layouts/Footer";
+import Footer from "@/components/layouts/Footer";
 import Header from "@/components/layouts/Header";
 import type { Metadata } from "next";
 
@@ -13,7 +13,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <>
       <Header />
       <main className="flex-1 container-sm">{children}</main>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }

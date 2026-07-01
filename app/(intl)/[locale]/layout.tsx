@@ -4,6 +4,8 @@ import "../../globals.css";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { Toaster } from "sonner";
 import { NextIntlClientProvider } from "next-intl";
+import Header from "@/projects/lang/layouts/Header";
+import Footer from "@/components/layouts/Footer";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -44,7 +46,9 @@ export default async function RootLayout({ children, params }: Props) {
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <NextIntlClientProvider>
             <Toaster position="top-center" richColors swipeDirections={["left", "right", "top"]} />
-            {children}
+            <Header />
+            <main className="flex-1 container-sm">{children}</main>
+            <Footer />
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>
