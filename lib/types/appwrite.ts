@@ -8,6 +8,15 @@ export type User = Models.User<Models.Preferences> & {
   address: string | null;
 };
 
+export type UserExtend = {
+  $id: string;
+  name: string;
+  email: string;
+  role: UserRole;
+  age: number | null;
+  address: string | null;
+};
+
 export type Blog = Models.DefaultDocument & {
   title: string;
   content: string;

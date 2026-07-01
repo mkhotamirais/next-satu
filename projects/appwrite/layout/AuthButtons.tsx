@@ -1,7 +1,5 @@
 "use client";
 
-import React from "react";
-import { User } from "@/lib/types/appwrite";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import {
@@ -15,8 +13,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { signOut } from "@/actions/appwrite/auth";
+import { UserExtend } from "@/lib/types/appwrite";
 
-export default function AuthButtons({ user }: { user: User | null }) {
+export default function AuthButtons({ user }: { user: UserExtend | null }) {
   if (user) {
     return (
       <div>
