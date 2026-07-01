@@ -42,6 +42,9 @@ export default function NextBtn() {
           </DropdownMenuGroup>
         ))}
         <DropdownMenuSeparator />
+        <DropdownMenuItem asChild>
+          <Link href={`/en/lang`}>Lang</Link>
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
