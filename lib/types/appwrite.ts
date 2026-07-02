@@ -2,16 +2,21 @@ import type { Models } from "node-appwrite";
 
 export type UserRole = "user" | "admin";
 
-export type User = Models.User<Models.Preferences> & {
-  role: UserRole;
-  age: number | null;
-  address: string | null;
-};
+// export type User = Models.User<Models.Preferences> & {
+//   role: UserRole;
+//   age: number | null;
+//   address: string | null;
+// };
 
-export type UserExtend = {
+// src/lib/types/appwrite.ts
+export type User = {
+  // dari Auth
   $id: string;
   name: string;
   email: string;
+  phone: string;
+  emailVerification?: boolean;
+  // dari Database
   role: UserRole;
   age: number | null;
   address: string | null;
