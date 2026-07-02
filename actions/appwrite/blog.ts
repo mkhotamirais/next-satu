@@ -3,20 +3,20 @@
 import { blogSchema, InferBlogSchema } from "@/lib/schemas/appwrite/blog";
 import { createAdminClient, createSessionClient } from "@/lib/server/appwrite";
 import { APPWRITE_DB_ID_NEXT_DB, APPWRITE_TABLE_BLOG, APPWRITE_BUCKET_NEXT_BUCKET } from "@/lib/constants";
-import { ID } from "node-appwrite";
+import { ID, Query } from "node-appwrite";
 import { revalidatePath } from "next/cache";
 
 // GET ALL BLOGS
 export const getBlogs = async () => {
   try {
-    const { databases } = await createAdminClient();
+    const { tablesDB } = await createAdminClient();
 
-    const blogs = await databases.listDocuments({
+    const res = await tablesDB.listRows({
       databaseId: APPWRITE_DB_ID_NEXT_DB,
-      collectionId: APPWRITE_TABLE_BLOG,
+      tableId: APPWRITE_TABLE_BLOG,
     });
 
-    return { ok: true, data: blogs.documents };
+    return { ok: true, data: res.rows, total: res.total };
   } catch (error) {
     console.error(error);
     return {
@@ -26,18 +26,22 @@ export const getBlogs = async () => {
   }
 };
 
-// GET BLOG BY ID
-export const getBlogById = async (id: string) => {
+// GET BLOG BY SLUG
+export const getBlogBySlug = async (slug: string) => {
   try {
-    const { databases } = await createAdminClient();
+    const { tablesDB } = await createAdminClient();
 
-    const blog = await databases.getDocument({
+    const res = await tablesDB.listRows({
       databaseId: APPWRITE_DB_ID_NEXT_DB,
-      collectionId: APPWRITE_TABLE_BLOG,
-      documentId: id,
+      tableId: APPWRITE_TABLE_BLOG,
+      queries: [Query.equal("slug", slug), Query.limit(1)],
     });
 
-    return { ok: true, data: blog };
+    if (res.rows.length === 0) {
+      return { ok: false, message: "Blog not found" };
+    }
+
+    return { ok: true, data: res.rows[0] };
   } catch (error) {
     console.error(error);
     return {

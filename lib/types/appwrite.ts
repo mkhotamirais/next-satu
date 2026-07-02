@@ -22,7 +22,7 @@ export type User = {
   address: string | null;
 };
 
-export type Blog = Models.DefaultDocument & {
+export type Blog = Models.DefaultRow & {
   title: string;
   content: string;
   bannerId: string;

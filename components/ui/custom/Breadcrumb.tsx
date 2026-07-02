@@ -3,35 +3,42 @@
 import React from "react";
 import { usePathname } from "next/navigation";
 import {
-  Breadcrumb,
+  Breadcrumb as BreadcrumbRoot,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { smartTrim } from "@/lib/utils";
 
-export default function DashboardBreadcrumb() {
+type BreadcrumbProps = {
+  initialPath?: string;
+  initialLabel?: string;
+  className?: string;
+};
+
+export default function Breadcrumb({ initialPath = "/", initialLabel = "Home", className }: BreadcrumbProps) {
   const pathname = usePathname();
 
   const pathArray = pathname.split("/").filter(Boolean);
 
-  const segments = pathArray[0] === "appwrite" ? pathArray.slice(1) : pathArray;
-
   return (
-    <Breadcrumb>
+    <BreadcrumbRoot className={`${className} mb-4`}>
       <BreadcrumbList>
+        {/* Initial/Root */}
         <BreadcrumbItem>
-          <BreadcrumbLink href="/appwrite/dashboard">Dashboard</BreadcrumbLink>
+          <BreadcrumbLink href={initialPath}>{initialLabel}</BreadcrumbLink>
         </BreadcrumbItem>
 
-        {segments.map((segment, index) => {
-          if (segment === "dashboard") return null;
+        {pathArray.map((segment, index) => {
+          const href = "/" + pathArray.slice(0, index + 1).join("/");
+          const isLast = index === pathArray.length - 1;
 
-          const href = "/appwrite/" + segments.slice(0, index + 1).join("/");
-          const isLast = index === segments.length - 1;
-
-          const label = segment.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
+          const label = smartTrim(
+            segment.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase()),
+            30, // potong kalau lebih dari 30 karakter
+          );
 
           return (
             <React.Fragment key={href}>
@@ -47,6 +54,6 @@ export default function DashboardBreadcrumb() {
           );
         })}
       </BreadcrumbList>
-    </Breadcrumb>
+    </BreadcrumbRoot>
   );
 }
