@@ -6,6 +6,7 @@ import { Toaster } from "sonner";
 import { NextIntlClientProvider } from "next-intl";
 import Header from "@/projects/lang/layouts/Header";
 import Footer from "@/components/layouts/Footer";
+import { setRequestLocale } from "next-intl/server";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -31,6 +32,8 @@ type Props = {
 
 export default async function RootLayout({ children, params }: Props) {
   const { locale } = await params;
+  setRequestLocale(locale);
+
   const dir = locale === "ar" ? "rtl" : "ltr";
   const fontClass = locale === "ar" ? `${arabic.variable} font-arabic` : `${inter.variable} font-sans`;
 
