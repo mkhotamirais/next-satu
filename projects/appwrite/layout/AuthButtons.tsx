@@ -13,9 +13,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { signOut } from "@/actions/appwrite/auth";
-import { UserExtend } from "@/lib/types/appwrite";
+import { User } from "@/lib/types/appwrite";
 
-export default function AuthButtons({ user }: { user: UserExtend | null }) {
+export default function AuthButtons({ user }: { user: User | null }) {
   if (user) {
     return (
       <div>
