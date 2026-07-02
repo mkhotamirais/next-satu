@@ -1,19 +1,13 @@
-"use client";
+import { setRequestLocale } from "next-intl/server";
+import AboutTitle from "./AboutTitle";
 
-import { useTranslations } from "next-intl";
-import React, { use } from "react";
-
-export default function About({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = use(params);
-
-  // setRequestLocale(locale); // tidak dibutuhkan
-
-  const t = useTranslations("menu");
+export default async function About({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
 
   return (
     <div>
-      <h1>{t("AboutPage.title")}</h1>
-      <p>{locale}</p>
+      <AboutTitle params={params} />
     </div>
   );
 }

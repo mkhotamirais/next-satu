@@ -1,12 +1,9 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import React from "react";
 
 export default async function Lang({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  // const m = useTranslations("menu");
-  // const p = useTranslations("halo");
   const m = await getTranslations({ locale, namespace: "menu" });
   const p = await getTranslations({ locale, namespace: "halo" });
 

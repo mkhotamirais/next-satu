@@ -5,3 +5,8 @@ export const APPWRITE_TABLE_USERS = process.env.NEXT_PUBLIC_APPWRITE_TABLE_USERS
 export const APPWRITE_TABLE_BLOG = process.env.NEXT_PUBLIC_APPWRITE_TABLE_BLOG as string;
 export const APPWRITE_API_KEY = process.env.APPWRITE_API_KEY as string;
 export const APPWRITE_BUCKET_NEXT_BUCKET = process.env.NEXT_PUBLIC_APPWRITE_BUCKET_NEXT_BUCKET as string;
+
+export const BASE_URL =
+  process.env.NODE_ENV === "development"
+    ? (process.env.NEXT_PUBLIC_BASE_URL as string)
+    : (process.env.NEXT_PUBLIC_BASE_URL_PROD as string);
