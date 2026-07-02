@@ -8,13 +8,16 @@ export async function getLoggedInUser() {
     const { account, tablesDB } = await createSessionClient();
     // return await account.get();
     const authUser = await account.get();
+    console.log("✅ authUser:", authUser);
 
-    // const dbUser = await tablesDB(APPWRITE_DB_ID_NEXT_DB, APPWRITE_TABLE_USERS, authUser.$id);
     const dbUser = await tablesDB.getRow({
       databaseId: APPWRITE_DB_ID_NEXT_DB,
       tableId: APPWRITE_TABLE_USERS,
       rowId: authUser.$id,
     });
+    console.log("✅ dbUser:", dbUser);
+
+    // const user = {...authUser, ...dbUser};
     return {
       // dari Auth
       $id: authUser.$id,

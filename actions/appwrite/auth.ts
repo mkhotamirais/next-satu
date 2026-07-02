@@ -67,7 +67,12 @@ export const signIn = async (data: InferSignInSchema) => {
 
     const session = await account.createEmailPasswordSession({ email, password });
     const cookieStore = await cookies();
-    cookieStore.set(SESSION_COOKIE, session.secret, { path: "/", httpOnly: true, sameSite: "lax", secure: true });
+    cookieStore.set(SESSION_COOKIE, session.secret, {
+      path: "/",
+      httpOnly: true,
+      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
+    });
 
     return { ok: true, message: "Sign in successful" };
   } catch (error) {
