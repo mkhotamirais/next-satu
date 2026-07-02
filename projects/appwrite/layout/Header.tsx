@@ -1,11 +1,12 @@
+"use client";
+
 import Logo from "@/components/Logo";
-import React from "react";
 import NavDesktop from "./NavDesktop";
 import AuthButtons from "./AuthButtons";
-import { getLoggedInUser } from "@/lib/server/appwrite.query";
+import { useUser } from "../hooks/useUser";
 
-export default async function Header() {
-  const user = await getLoggedInUser();
+export default function Header() {
+  const { user } = useUser();
 
   return (
     <header className="sticky top-0 h-16 z-30 bg-white">
