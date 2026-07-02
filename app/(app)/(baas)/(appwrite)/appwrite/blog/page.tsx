@@ -1,8 +1,9 @@
 import { getBlogs } from "@/actions/appwrite/blog";
 import BlogList from "@/projects/appwrite/components/BlogList";
-import React from "react";
 import { Blog as BlogType } from "@/lib/types/appwrite";
 import Breadcrumb from "@/components/ui/custom/Breadcrumb";
+
+export const dynamic = "force-static";
 
 export default async function Blog() {
   const { data: blogs } = await getBlogs();
