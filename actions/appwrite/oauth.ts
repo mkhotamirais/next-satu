@@ -15,7 +15,7 @@ export async function oauthGithub() {
 
   const redirectUrl = await account.createOAuth2Token({
     provider: OAuthProvider.Github,
-    success: `${origin}/appwrite/oauth`,
+    success: `${origin}/api/appwrite/oauth`,
     failure: `${origin}/appwrite/signin`,
   });
 

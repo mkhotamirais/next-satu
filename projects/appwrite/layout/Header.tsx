@@ -1,7 +1,6 @@
 import Logo from "@/components/Logo";
 import NavDesktop from "./NavDesktop";
 import AuthButtons from "./AuthButtons";
-import { Suspense } from "react";
 
 export default function Header() {
   return (
@@ -10,9 +9,7 @@ export default function Header() {
         <Logo />
         <div className="flex items-center">
           <NavDesktop />
-          <Suspense fallback={<div>Loading...</div>}>
-            <AuthButtons />
-          </Suspense>
+          <AuthButtons />
         </div>
       </div>
     </header>
