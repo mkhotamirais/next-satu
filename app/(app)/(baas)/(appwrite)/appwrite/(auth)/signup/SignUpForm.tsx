@@ -11,8 +11,10 @@ import { InferSignUpSchema, signUpSchema } from "@/lib/schemas/appwrite/auth";
 import { signUp } from "@/actions/appwrite/auth";
 import { useRouter } from "next/navigation";
 import { Spinner } from "@/components/ui/spinner";
+import { useUser } from "@/projects/appwrite/hooks/useUser";
 
 export function SignUpForm() {
+  const { fetchUser } = useUser();
   const form = useForm<InferSignUpSchema>({
     resolver: zodResolver(signUpSchema),
     defaultValues: { name: "", email: "", password: "", confirmPassword: "" },
@@ -29,7 +31,9 @@ export function SignUpForm() {
     }
 
     toast.success(res.message);
-    form.reset();
+    // form.reset();
+    // router.refresh();
+    await fetchUser();
     router.push("/appwrite/account");
   };
   return (

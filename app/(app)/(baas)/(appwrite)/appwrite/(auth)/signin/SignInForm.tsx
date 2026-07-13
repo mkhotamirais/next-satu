@@ -13,10 +13,12 @@ import { signInSchema } from "@/lib/schemas/appwrite/auth";
 import { signIn } from "@/actions/appwrite/auth";
 import { useRouter } from "next/navigation";
 import { Spinner } from "@/components/ui/spinner";
+import { useUser } from "@/projects/appwrite/hooks/useUser";
 
 type Infer = z.infer<typeof signInSchema>;
 
 export function SignInForm() {
+  const { fetchUser } = useUser();
   const form = useForm<Infer>({
     resolver: zodResolver(signInSchema),
     defaultValues: { email: "", password: "" },
@@ -33,7 +35,9 @@ export function SignInForm() {
     }
 
     toast.success(res.message);
-    form.reset();
+    // form.reset();
+    // router.refresh();
+    await fetchUser();
     router.push("/appwrite/account");
   };
 

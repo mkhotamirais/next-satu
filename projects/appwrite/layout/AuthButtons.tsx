@@ -14,9 +14,15 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { signOut } from "@/actions/appwrite/auth";
 import { useUser } from "../hooks/useUser";
+import { useRouter } from "next/navigation";
 
 export default function AuthButtons() {
-  const { user } = useUser();
+  const { user, setUser, loading } = useUser();
+  const router = useRouter();
+
+  if (loading) {
+    return null;
+  }
 
   if (user) {
     return (
@@ -50,6 +56,8 @@ export default function AuthButtons() {
                 variant="destructive"
                 onClick={async () => {
                   await signOut();
+                  setUser(null);
+                  router.push("/appwrite/signin");
                 }}
               >
                 Sign out

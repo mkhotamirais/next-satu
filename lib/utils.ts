@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { APPWRITE_BUCKET_NEXT_BUCKET, APPWRITE_ENDPOINT } from "./constants";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -38,4 +39,21 @@ export const diffForHumans = (date: string | number | Date) => {
   if (diffInMonths < 12) return `${diffInMonths} bulan yang lalu`;
   const diffInYears = Math.floor(diffInMonths / 12);
   return `${diffInYears} tahun yang lalu`;
+};
+
+export const generateSlug = (text: string) => {
+  const slug = text
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");
+  return slug;
+};
+
+export const appwriteImageUrl = (imageId: string | null) => {
+  if (imageId) {
+    return `${APPWRITE_ENDPOINT}/storage/buckets/${APPWRITE_BUCKET_NEXT_BUCKET}/files/${imageId}/view?project=${process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID}`;
+  }
+  return null;
 };

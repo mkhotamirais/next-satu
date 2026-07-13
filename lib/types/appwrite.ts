@@ -24,8 +24,10 @@ export type User = {
 
 export type Blog = Models.DefaultRow & {
   title: string;
+  slug: string;
   content: string;
-  bannerId: string;
+  imageId: string;
+  imageUrl: string;
 };
 
 // export interface Post {

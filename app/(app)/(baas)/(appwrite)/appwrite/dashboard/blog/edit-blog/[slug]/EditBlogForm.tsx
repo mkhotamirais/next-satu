@@ -9,21 +9,27 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Spinner } from "@/components/ui/spinner";
 import { blogSchema, InferBlogSchema } from "@/lib/schemas/appwrite/blog";
-import { createBlog } from "@/actions/appwrite/blog";
+import { updateBlog } from "@/actions/appwrite/blog"; // ← bukan createBlog!
 import { useRouter } from "next/navigation";
 import { useState, useRef } from "react";
 import Image from "next/image";
 import { X } from "lucide-react";
+import { Blog } from "@/lib/types/appwrite";
 
-export default function CreateBlogForm() {
+export default function EditBlogForm({ blog }: { blog: Blog }) {
   const form = useForm<InferBlogSchema>({
     resolver: zodResolver(blogSchema),
-    defaultValues: { title: "", content: "", image: undefined },
+    defaultValues: {
+      title: blog.title || "",
+      content: blog.content || "",
+      image: undefined,
+    },
   });
 
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
-  const imageInputRef = useRef<HTMLInputElement>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(blog?.imageUrl || null);
+  const [removeImage, setRemoveImage] = useState(false);
 
+  const imageInputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
   const pending = form.formState.isSubmitting;
 
@@ -38,6 +44,7 @@ export default function CreateBlogForm() {
 
     if (file) {
       setImagePreview(URL.createObjectURL(file));
+      setRemoveImage(false);
     } else {
       setImagePreview(null);
     }
@@ -50,6 +57,7 @@ export default function CreateBlogForm() {
 
     onChange(null);
     setImagePreview(null);
+    setRemoveImage(true);
 
     if (imageInputRef.current) {
       imageInputRef.current.value = "";
@@ -58,15 +66,17 @@ export default function CreateBlogForm() {
 
   const onSubmit = async (data: InferBlogSchema) => {
     const { title, content, image } = data;
+    const slug = blog.slug;
 
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
+    formData.append("removeImage", String(removeImage));
     if (image) {
       formData.append("image", image as File);
     }
 
-    const res = await createBlog(formData);
+    const res = await updateBlog(slug, formData);
     if (!res.ok) {
       toast.error(res.message);
       return;
@@ -100,6 +110,8 @@ export default function CreateBlogForm() {
                   onChange={(e) => handleImageChange(e, field.onChange)}
                 />
 
+                {/* {fieldState.invalid && <FieldError errors={[fieldState.error]} />} */}
+
                 {imagePreview && (
                   <div className="relative mt-2">
                     <Image
@@ -125,6 +137,7 @@ export default function CreateBlogForm() {
             </Field>
           )}
         />
+
         {/* Title */}
         <Controller
           name="title"
@@ -167,7 +180,7 @@ export default function CreateBlogForm() {
 
       <Button type="submit" disabled={pending} className="w-full mt-4 py-4">
         {pending && <Spinner />}
-        Create Blog
+        Update Blog {/* ← bukan Create Blog! */}
       </Button>
     </form>
   );

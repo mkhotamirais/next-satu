@@ -22,7 +22,20 @@ export default async function BlogDetail({ params }: { params: Promise<{ slug: s
         <h1 className="first-letter:capitalize">{blog.title}</h1>
         <p className="text-xs text-muted-foreground mt-1">{diffForHumans(blog.$createdAt)}</p>
 
-        <Image src={imageUrl} alt={blog.title} width={500} height={300} className="w-full rounded-md" loading="eager" />
+        {imageUrl ? (
+          <Image
+            src={imageUrl}
+            alt={blog.title}
+            width={500}
+            height={300}
+            className="w-full rounded-md"
+            loading="eager"
+          />
+        ) : (
+          <div className="w-full h-100 bg-muted flex items-center justify-center">
+            <span className="text-muted-foreground text-sm">No image</span>
+          </div>
+        )}
         <div dangerouslySetInnerHTML={{ __html: blog.content }}></div>
       </article>
     </section>

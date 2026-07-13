@@ -1,9 +1,9 @@
-import { APPWRITE_BUCKET_NEXT_BUCKET, APPWRITE_ENDPOINT } from "@/lib/constants";
 import { Blog } from "@/lib/types/appwrite";
 import Image from "next/image";
 import Link from "next/link";
 import { diffForHumans } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import Delete from "@/app/(app)/(baas)/(appwrite)/appwrite/dashboard/blog/Delete";
 
 interface Props {
   blog: Blog;
@@ -11,24 +11,21 @@ interface Props {
 }
 
 export async function BlogCard({ blog, isAdmin = false }: Props) {
-  const imageUrl = blog.bannerId
-    ? `${APPWRITE_ENDPOINT}/storage/buckets/${APPWRITE_BUCKET_NEXT_BUCKET}/files/${blog.bannerId}/view?project=${process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID}`
-    : null;
-
-  const excerpt = blog.content.length > 150 ? blog.content.slice(0, 150) + "..." : blog.content;
+  const excerpt = blog.content.length > 120 ? blog.content.slice(0, 120) + "..." : blog.content;
 
   return (
     <div className="flex flex-col gap-2">
       <Link href={`/appwrite/blog/${blog.slug}`}>
         <div className="group rounded-lg border border-border bg-card overflow-hidden hover:shadow-md transition-shadow duration-200">
-          {imageUrl ? (
+          {blog?.imageUrl ? (
             <div className="relative w-full h-48 overflow-hidden">
               <Image
-                src={imageUrl}
+                src={blog.imageUrl}
                 alt={blog.title}
                 width={500}
                 height={300}
                 className="object-cover object-center group-hover:scale-105 transition-transform duration-200"
+                loading="eager"
               />
             </div>
           ) : (
@@ -38,10 +35,10 @@ export async function BlogCard({ blog, isAdmin = false }: Props) {
           )}
 
           <div className="p-4 flex flex-col gap-2">
-            <h2 className="group-hover:underline font-semibold text-lg text-foreground line-clamp-2 group-hover:text-primary transition-colors">
+            <h2 className="first-letter:capitalize h-14 group-hover:underline font-semibold text-lg text-foreground line-clamp-2 group-hover:text-primary transition-colors">
               {blog.title}
             </h2>
-            <p className="text-sm text-muted-foreground line-clamp-3">{excerpt}</p>
+            <p className="h-20 text-sm text-muted-foreground line-clamp-3">{excerpt}</p>
             <span className="text-xs text-muted-foreground mt-1">{diffForHumans(blog.$createdAt)}</span>
           </div>
         </div>
@@ -50,12 +47,12 @@ export async function BlogCard({ blog, isAdmin = false }: Props) {
       {isAdmin ? (
         <div className="border p-2 rounded-lg flex flex-wrap items-center gap-2">
           <Button>
-            <Link href={`/appwrite/blog/${blog.$id}`}>Read More</Link>
+            <Link href={`/appwrite/blog/${blog.slug}`}>Read More</Link>
           </Button>
           <Button variant="outline">
-            <Link href={`/appwrite/blog/${blog.$id}/edit`}>Edit</Link>
+            <Link href={`/appwrite/dashboard/blog/edit-blog/${blog.slug}`}>Edit</Link>
           </Button>
-          <Button variant="destructive">Delete</Button>
+          <Delete id={blog.$id} title={blog.title} />
         </div>
       ) : null}
     </div>
