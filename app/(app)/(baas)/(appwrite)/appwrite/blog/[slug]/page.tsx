@@ -1,7 +1,13 @@
-import { getBlogBySlug } from "@/actions/appwrite/blog";
+import { getBlogBySlug, getBlogs } from "@/actions/appwrite/blog";
 import Breadcrumb from "@/components/ui/custom/Breadcrumb";
 import { diffForHumans } from "@/lib/utils";
 import Image from "next/image";
+
+export const generateStaticParams = async () => {
+  const { data: blogs } = await getBlogs();
+  if (!blogs) return [];
+  return blogs.map((blog) => ({ slug: blog.slug }));
+};
 
 export default async function BlogDetail({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
