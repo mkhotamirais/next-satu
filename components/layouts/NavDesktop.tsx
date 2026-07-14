@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
-import { menu } from "@/lib/content/main/menu";
+import { Menu } from "@/lib/types/main";
 import Link from "next/link";
 
-export default function NavDesktop() {
+export default function NavDesktop({ menu = [] }: { menu: Menu[] }) {
   return (
     <nav className="hidden md:flex items-center mr-2">
       {menu.map((item, i) => (

@@ -157,7 +157,7 @@
   }
 
   .h2 {
-    @apply text-xl sm:text-2xl lg:text-3xl font-medium mb-2 capitalize;
+    @apply text-xl sm:text-xl lg:text-2xl font-medium mb-2 capitalize;
   }
 
   .h3 {

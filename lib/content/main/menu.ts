@@ -25,11 +25,35 @@ export const nextMenu = [
     ],
   },
   {
+    label: "Public API",
+    url: "#",
+    menu: [
+      { label: "Dummyjson", url: "/dummyjson" },
+      { label: "Jsonplaceholder", url: "/jsonplaceholder" },
+      { label: "Youtube", url: "/youtube" },
+    ],
+  },
+  {
     label: "FullStack",
     url: "#",
     menu: [
-      { label: "WarungOta", url: "/warungota" },
-      { label: "Subscription", url: "/subscription" },
+      { label: "Next Shop", url: "/next-shop" },
+      { label: "MERN Shop", url: "/mern-shop" },
     ],
   },
+];
+
+export const youtubeMenu = [
+  { label: "Home", url: "/youtube" },
+  { label: "About", url: "/youtube/about" },
+];
+
+export const dummyjsonMenu = [
+  { label: "Home", url: "/dummyjson" },
+  { label: "About", url: "/dummyjson/about" },
+];
+
+export const jsonplaceholderMenu = [
+  { label: "Home", url: "/jsonplaceholder" },
+  { label: "About", url: "/jsonplaceholder/about" },
 ];

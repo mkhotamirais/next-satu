@@ -7,11 +7,14 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { dashboardMenu } from "@/lib/content/appwrite/menu";
 import { Menu } from "lucide-react";
 import Link from "next/link";
 
-export default function DashboardMobile() {
+type Props = {
+  menu: { label: string; url: string }[];
+};
+
+export default function AsideMobile({ menu }: Props) {
   return (
     <div className="block md:hidden">
       <DropdownMenu>
@@ -21,7 +24,7 @@ export default function DashboardMobile() {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          {dashboardMenu.map((item, i) => (
+          {menu.map((item, i) => (
             <DropdownMenuItem key={i} asChild>
               <Link href={item.url} className="block">
                 {item.label}

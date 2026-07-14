@@ -11,3 +11,8 @@ export interface IPost {
   meta: IPostMeta;
   content: string;
 }
+
+export interface Menu {
+  label: string;
+  url: string;
+}

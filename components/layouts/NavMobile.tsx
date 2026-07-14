@@ -6,9 +6,9 @@ import Logo from "@/components/Logo";
 import { SheetClose } from "@/components/ui/sheet";
 import { ThemeToggle } from "./ThemeToggle";
 import Sheet2 from "../Sheet2";
-import { menu } from "@/lib/content/main/menu";
+import { Menu } from "@/lib/types/main";
 
-export default function NavMobile() {
+export default function NavMobile({ menu = [] }: { menu: Menu[] }) {
   return (
     <div className="flex md:hidden">
       <Sheet2 title={<Logo />} side="right">

@@ -2,7 +2,7 @@ import { dashboardMenu } from "@/lib/content/appwrite/menu";
 import Link from "next/link";
 import React from "react";
 
-export default function DashboardDesktop() {
+export default function AsideDesktop() {
   return (
     <nav className="hidden md:block">
       {dashboardMenu.map((item, i) => (

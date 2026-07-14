@@ -1,9 +1,10 @@
 ---
 title: "Hello World!"
-date: "2025-06-24"
+date: "2025-06-22"
 category: "coding"
 tags: ["templae", "en"]
 excerpt: "Ini adalah post pertama saya di blog portfolio."
 ---
 
-hello world
+# Hello World
+Syaratnya terinstall nodejs

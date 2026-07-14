@@ -25,7 +25,7 @@ export default function NextBtn() {
           </span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent className="w-fit">
         <DropdownMenuItem asChild>
           <Link href={`/`}>Home</Link>
         </DropdownMenuItem>

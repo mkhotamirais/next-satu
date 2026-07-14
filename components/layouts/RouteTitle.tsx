@@ -2,9 +2,9 @@
 
 import { usePathname } from "next/navigation";
 
-export default function DashboardTitle() {
+export default function RouteTitle() {
   const pathname = usePathname();
   const title = pathname.split("/").pop()?.replace(/-/g, " ");
 
-  return <h1 className="h1 mb-0">{title ?? "Dashboard"}</h1>;
+  return <h1 className="h1 mb-0">{title ?? "Next Satu"}</h1>;
 }
