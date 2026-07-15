@@ -16,19 +16,23 @@ import { signOut } from "@/actions/appwrite/auth";
 import { useUser } from "../hooks/useUser";
 import { useRouter } from "next/navigation";
 
-export default function AuthButtons() {
+type Props = {
+  className?: string;
+};
+
+export default function AuthDesktop({ className }: Props) {
   const { user, setUser, loading } = useUser();
   const router = useRouter();
 
-  if (loading) {
-    return null;
-  }
+  let content = null;
+
+  if (loading) content = null;
 
   if (user) {
-    return (
+    content = (
       <div>
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
+          <DropdownMenuTrigger asChild className="ml-4">
             <Avatar>
               <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" className="grayscale" />
               <AvatarFallback>CN</AvatarFallback>
@@ -67,16 +71,17 @@ export default function AuthButtons() {
         </DropdownMenu>
       </div>
     );
+  } else {
+    content = (
+      <div className="space-x-2">
+        <Button variant={"ghost"}>
+          <Link href="/appwrite/signin">Sign in</Link>
+        </Button>
+        <Button>
+          <Link href="/appwrite/signup">Sign up</Link>
+        </Button>
+      </div>
+    );
   }
-
-  return (
-    <div className="space-x-2">
-      <Button variant={"ghost"}>
-        <Link href="/appwrite/signin">Sign in</Link>
-      </Button>
-      <Button>
-        <Link href="/appwrite/signup">Sign up</Link>
-      </Button>
-    </div>
-  );
+  return <div className={`${className} hidden md:block`}>{content}</div>;
 }

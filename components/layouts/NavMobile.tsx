@@ -8,7 +8,12 @@ import { ThemeToggle } from "./ThemeToggle";
 import Sheet2 from "../Sheet2";
 import { Menu } from "@/lib/types/main";
 
-export default function NavMobile({ menu = [] }: { menu: Menu[] }) {
+type Props = {
+  menu: Menu[];
+  authButtons?: React.ReactNode;
+};
+
+export default function NavMobile({ menu = [], authButtons }: Props) {
   return (
     <div className="flex md:hidden">
       <Sheet2 title={<Logo />} side="right">
@@ -16,6 +21,7 @@ export default function NavMobile({ menu = [] }: { menu: Menu[] }) {
           <div className="flex justify-end">
             <ThemeToggle />
           </div>
+          {authButtons}
           {menu.map((item, i) => (
             <SheetClose asChild key={i}>
               <Link href={item.url}>

@@ -2,7 +2,12 @@ import { Button } from "@/components/ui/button";
 import { Menu } from "@/lib/types/main";
 import Link from "next/link";
 
-export default function NavDesktop({ menu = [] }: { menu: Menu[] }) {
+type Props = {
+  menu: Menu[];
+  authButtons?: React.ReactNode;
+};
+
+export default function NavDesktop({ menu = [], authButtons }: Props) {
   return (
     <nav className="hidden md:flex items-center mr-2">
       {menu.map((item, i) => (
@@ -12,6 +17,7 @@ export default function NavDesktop({ menu = [] }: { menu: Menu[] }) {
           </Button>
         </Link>
       ))}
+      {authButtons && authButtons}
     </nav>
   );
 }

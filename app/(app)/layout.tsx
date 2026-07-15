@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "../globals.css";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { Toaster } from "sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -30,8 +31,10 @@ export default async function RootLayout({ children }: Props) {
       <body className="min-h-full flex flex-col w-full" suppressHydrationWarning>
         {/* <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange> */}
         <ThemeProvider attribute="class" defaultTheme="system">
-          <Toaster position="top-center" richColors swipeDirections={["left", "right", "top"]} />
-          {children}
+          <TooltipProvider>
+            <Toaster position="top-center" richColors swipeDirections={["left", "right", "top"]} />
+            {children}
+          </TooltipProvider>
         </ThemeProvider>
       </body>
     </html>

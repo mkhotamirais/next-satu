@@ -11,7 +11,7 @@ export const nextMenu = [
     label: "FrontEnd",
     url: "#",
     menu: [
-      { label: "Components", url: "/components" },
+      { label: "Components apps", url: "/components-apps" },
       { label: "Motion", url: "/motion" },
     ],
   },
